@@ -10,8 +10,7 @@ df -h | awk 'NR=="4"{printf "#Disk Usage: %d/%dGB (%s)\n", $3,$2,$5}'
 cat /proc/cpuinfo |grep processor | wc -l | awk '{printf "vCPU : "} $1'
 #CPU load
 grep 'cpu ' /proc/stat | awk '{printf "CPU load : %.1f%%\n", ($2+$4)*100/($2+$4+$5)}'
-
-# ?? for the last reboot (needs modifications)
-who -b | tr -d 'systemboot' | awk '{printf "last boot: "} $2'
-# OR
-who -b | awk '{print $3" "$4" "$5}'
+#Last Boot
+who -b | awk '{print "#Last boot: "$3" "$4}'
+#TCP connection
+ss -s | grep "estab" | tr -d ',' | awk '{print "#Connections TCP : "$4}'
