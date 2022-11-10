@@ -13,3 +13,5 @@ grep 'cpu ' /proc/stat | awk '{printf "CPU load : %.1f%%\n", ($2+$4)*100/($2+$4+
 
 # ?? for the last reboot (needs modifications)
 who -b | tr -d 'systemboot' | awk '{printf "last boot: "} $2'
+# OR
+who -b | awk '{print $3" "$4" "$5}'
